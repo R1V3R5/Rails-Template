@@ -240,7 +240,7 @@ end
 if get(set_color 'Would you like to use the Haml gem?', :magenta)
   gem 'haml-rails'
   after bundle do
-    run('find . -name \*.erb -print | sed 'p;s/.erb$/.haml/' | xargs -n2 html2haml')
+    run('find . -name \*.erb -print | sed \'p;s/.erb$/.haml/\' | xargs -n2 html2haml')
   end
 end
 
