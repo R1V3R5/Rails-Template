@@ -237,6 +237,13 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
   end
 end
 
+if get(set_color 'Would you like to use the Haml gem?', :magenta)
+  gem 'haml-rails'
+  after bundle do
+    run('find . -name \*.erb -print | sed 'p;s/.erb$/.haml/' | xargs -n2 html2haml')
+  end
+end
+
 #Bundle
 after_bundle do
   if get(set_color 'Would you like to create a new git repo and add everything to it?', :magenta)
