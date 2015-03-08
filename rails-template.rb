@@ -6,7 +6,7 @@ end
 
 gem 'hirb'
 gem 'kaminari'
-
+gem 'responders', '~> 2.0'
 #heroku gems
 gem 'puma'
 gem 'rails_12factor'
@@ -144,6 +144,11 @@ gem_group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'pry-rails'
+  gem 'colorize'
+  gem 'quiet_assets'
+  gem 'letter_opener'
+  gem 'html2haml'
 
   if get(set_color 'Would you like to use the better errors gem?', :magenta)
     gem 'better_errors'
@@ -158,7 +163,6 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
 
     if get(set_color 'Would you like to use Simple Form?', :magenta)
       gem 'simple_form'
-      generate('simple_form:install --bootstrap')
     end
 
     puts(set_color 'Creating application.scss', :blue, :bold)
@@ -239,9 +243,6 @@ end
 
 if get(set_color 'Would you like to use the Haml gem?', :magenta)
   gem 'haml-rails'
-  after bundle do
-    run('find . -name \*.erb -print | sed \'p;s/.erb$/.haml/\' | xargs -n2 html2haml')
-  end
 end
 
 #Bundle
@@ -294,7 +295,9 @@ after_bundle do
 
   end
 
-
+  run('find . -name \*.erb -print | sed \'p;s/.erb$/.haml/\' | xargs -n2 html2haml') if get(set_color 'Convert erb to haml?', :magenta)
+  generate('simple_form:install --bootstrap') if get(set_color 'Simple form with bootstrap?', :magenta)
+  generate('responders:install')
   rake('db:create') if get(set_color 'Would you like to create your db with `rake db:create`', :magenta)
   yes?(set_color 'Remember to declare your ruby version in your gem file.', :red,  :bold)
   yes?(set_color 'If using cancancan, you need to run the `rails g cancan:ability`command.', :red, :bold)
