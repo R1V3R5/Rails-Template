@@ -19,11 +19,11 @@ if get(set_color 'Would you like to use Devise and Figaro?',:magenta)
     puts(set_color 'Installing Figaro', :blue, :bold )
     run('figaro install')
 
-    puts(set_color 'Installing Devise', :blue, :bold )
-    generate('devise:install')
+    # puts(set_color 'Installing Devise', :blue, :bold )
+    # generate('devise:install')
 
-    puts(set_color 'Installing Devise Views', :blue, :bold )
-    generate('devise:views')
+    # puts(set_color 'Installing Devise Views', :blue, :bold )
+    # generate('devise:views')
   end
 
   if get(set_color 'Would you like to use CanCanCan or Pundit?',:magenta)
@@ -113,7 +113,8 @@ end
 
 #Procfile
 puts(set_color 'Creating Procfile', :blue, :bold )
-file 'Procfile',<<-CODE
+file 'Procfile',
+  <<-CODE
 web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
 CODE
 
@@ -167,7 +168,8 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
 
     puts(set_color 'Creating application.scss', :blue, :bold)
 
-    file 'app/assets/stylesheets/application.scss', <<-CODE
+    file 'app/assets/stylesheets/application.scss',
+      <<-CODE
     @import 'bootstrap-sprockets';
     @import 'bootstrap';
     CODE
@@ -184,7 +186,8 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
 
     puts(set_color 'Creating application.js', :blue, :bold)
 
-    file 'app/assets/javascripts/application.js', <<-CODE
+    file 'app/assets/javascripts/application.js',
+      <<-CODE
     //= require jquery
     //= require bootstrap-sprockets
     //= require jquery_ujs
@@ -207,7 +210,8 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
 
     puts(set_color 'Creating application.scss', :blue, :bold)
 
-    file 'app/assets/stylesheets/application.scss', <<-CODE
+    file 'app/assets/stylesheets/application.scss',
+      <<-CODE
     @import 'bourbon';
     @import 'base/base';
     @import 'neat';
@@ -229,7 +233,8 @@ if get(set_color 'Would you like to use either Bootstrap or Bourbon?', :magenta)
 
     puts(set_color 'Creating _base.scss', :blue, :bold )
 
-    file 'app/assets/stylesheets/base/_base.scss', <<-CODE
+    file 'app/assets/stylesheets/base/_base.scss',
+      <<-CODE
     @import "variables";
     @import "grid-settings";
     @import "buttons";
